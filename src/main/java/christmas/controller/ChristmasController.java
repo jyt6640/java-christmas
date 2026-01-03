@@ -24,12 +24,19 @@ public class ChristmasController {
         List<String> menuAndCounts = inputController.getMenuAndCount();
         Menus menus = christmasService.createReservationMenu(menuAndCounts);
         printOrderedMenu(menus);
+        printBeforeTotalPrice(menus);
     }
 
     private void printOrderedMenu(Menus menus) {
+        outputView.printOrderedMenuPrefix();
         for (Map.Entry<Menu, Integer> entry : menus.getMenuAndCounts().entrySet()) {
             outputView.printOrderedMenu(entry);
         }
+    }
+
+    private void printBeforeTotalPrice(Menus menus) {
+        int totalPrice = christmasService.calculateMenuPrice(menus);
+        outputView.printBeforeSaleTotalPrice(totalPrice);
     }
 
 }

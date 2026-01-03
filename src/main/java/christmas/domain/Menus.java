@@ -11,7 +11,7 @@ public class Menus {
     public Menus(List<String> menus) {
         this.menuAndCounts = new HashMap<>();
         for (String menu : menus) {
-             String[] menuAndCount = menu.split("-");
+            String[] menuAndCount = menu.split("-");
             menuAndCounts.put(getMenu(menuAndCount), getCount(menuAndCount));
         }
     }

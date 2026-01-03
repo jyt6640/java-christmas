@@ -45,6 +45,7 @@ public class InputController {
 
     private List<String> readMenuAndCount() {
         String value = inputView.readMenuAndCount();
+        validator.validateInputMenuAndCount(value);
         List<String> menus = List.of(value.split(","));
         validator.validateMenuAndCount(menus);
         return menus;
