@@ -13,7 +13,7 @@ public class ChristmasController {
     }
 
     public void run() {
-        String visitDay = inputController.getVisitDay();
+        int visitDay = inputController.getVisitDay();
         String menuAndCount = inputController.getMenuAndCount();
     }
 

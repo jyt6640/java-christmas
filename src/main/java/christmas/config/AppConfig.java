@@ -2,6 +2,7 @@ package christmas.config;
 
 import christmas.controller.ChristmasController;
 import christmas.controller.InputController;
+import christmas.util.InputValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -15,10 +16,16 @@ public class AppConfig {
         return new OutputView();
     }
 
+    public InputValidator validator() {
+        return new InputValidator();
+    }
+
     public InputController inputController() {
         return new InputController(
                 inputView(),
-                outputView());
+                outputView(),
+                validator()
+        );
     }
 
     public ChristmasController christmasController() {
