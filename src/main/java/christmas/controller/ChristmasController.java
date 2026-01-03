@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.GiftEvent;
 import christmas.domain.Menu;
 import christmas.domain.Menus;
 import christmas.service.ChristmasService;
@@ -23,8 +24,11 @@ public class ChristmasController {
         int visitDay = inputController.getVisitDay();
         List<String> menuAndCounts = inputController.getMenuAndCount();
         Menus menus = christmasService.createReservationMenu(menuAndCounts);
+        int totalPrice = christmasService.calculateMenuPrice(menus);
+        GiftEvent giftEvent = new GiftEvent(totalPrice);
         printOrderedMenu(menus);
-        printBeforeTotalPrice(menus);
+        printBeforeTotalPrice(totalPrice);
+        printPresentEvent(giftEvent);
     }
 
     private void printOrderedMenu(Menus menus) {
@@ -34,9 +38,12 @@ public class ChristmasController {
         }
     }
 
-    private void printBeforeTotalPrice(Menus menus) {
-        int totalPrice = christmasService.calculateMenuPrice(menus);
+    private void printBeforeTotalPrice(int totalPrice) {
         outputView.printBeforeSaleTotalPrice(totalPrice);
+    }
+
+    private void printPresentEvent(GiftEvent giftEvent) {
+        outputView.printPresentEvent(giftEvent.isPresentEvent());
     }
 
 }

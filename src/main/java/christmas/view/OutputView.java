@@ -23,4 +23,15 @@ public class OutputView {
         System.out.printf("%s원", totalPrice);
         System.out.println();
     }
+
+    public void printPresentEvent(boolean isPresentEvent) {
+        System.out.println();
+        System.out.println("<증정 메뉴>");
+        if (isPresentEvent) {
+            System.out.println("샴페인 1개");
+        }
+        if (!isPresentEvent) {
+            System.out.println("없음");
+        }
+    }
 }
