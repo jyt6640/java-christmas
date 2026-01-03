@@ -1,16 +1,17 @@
 package christmas.controller;
 
-import christmas.util.InputValidator;
+import christmas.util.Validator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.List;
 
 public class InputController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final InputValidator validator;
+    private final Validator validator;
 
-    public InputController(InputView inputView, OutputView outputView, InputValidator validator) {
+    public InputController(InputView inputView, OutputView outputView, Validator validator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.validator = validator;
@@ -26,7 +27,7 @@ public class InputController {
         }
     }
 
-    public String getMenuAndCount() {
+    public List<String> getMenuAndCount() {
         while (true) {
             try {
                 return readMenuAndCount();
@@ -42,10 +43,11 @@ public class InputController {
         return Integer.parseInt(value);
     }
 
-    private String readMenuAndCount() {
+    private List<String> readMenuAndCount() {
         String value = inputView.readMenuAndCount();
-        validator.validateMenuAndCount(value);
-        return value;
+        List<String> menus = List.of(value.split(","));
+        validator.validateMenuAndCount(menus);
+        return menus;
     }
 
 }
