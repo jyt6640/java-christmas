@@ -10,15 +10,12 @@ public class SaleEvent {
     public SaleEvent(int day) {
         this.isChristmasSale = isChristmasSale(day);
         this.isHolidaySale = isHoliday(day);
-        this.isWeekdaySale = isHoliday(day);
+        this.isWeekdaySale = !isHoliday(day);
         this.isSpecialSale = isSpecialSale(day);
     }
 
     private boolean isChristmasSale(int day) {
-        if (day <= 25) {
-            return true;
-        }
-        return false;
+        return day <= 25;
     }
 
     private boolean isHoliday(int day) {
@@ -26,10 +23,7 @@ public class SaleEvent {
     }
 
     private boolean isSpecialSale(int day) {
-        if ((day - 3) % 7 == 0) {
-            return true;
-        }
-        return false;
+        return (day - 3) % 7 == 0;
     }
 
     public int christmasSale(int money, int day) {

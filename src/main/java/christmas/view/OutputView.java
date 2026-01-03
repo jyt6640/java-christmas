@@ -34,4 +34,31 @@ public class OutputView {
             System.out.println("없음");
         }
     }
+    
+    public void printBenefits() {
+        System.out.println();
+        System.out.println("<혜택 내역>");
+    }
+    
+    public void printChristmasSale() {
+        System.out.println("크리스마스 디 데이 할인: ");
+    }
+    
+    public void printHolidaySale() {
+        System.out.println("주말 할인: ");
+    }
+    
+    public void printWeekdaySale() {
+        System.out.println("평일 할인: ");
+    }
+
+    public void printSpecialSale() {
+        System.out.println("특별 할인: ");
+    }
+    
+    public void printPresentEventBenefit(boolean isPresentEvent) {
+        if (isPresentEvent) {
+            System.out.println("증정 이벤트: -25,000원");
+        }
+    }
 }
