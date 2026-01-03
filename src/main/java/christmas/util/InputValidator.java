@@ -1,7 +1,5 @@
 package christmas.util;
 
-import java.util.regex.Pattern;
-
 public class InputValidator {
 
     public static final String NUMERIC_PATTERN = "^[0-9]+$";
