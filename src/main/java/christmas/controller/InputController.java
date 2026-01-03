@@ -13,19 +13,34 @@ public class InputController {
         this.outputView = outputView;
     }
 
-    public Object getXX() {
+    public String getVisitDay() {
         while (true) {
             try {
-                return readXX();
+                return readVisitDay();
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception);
             }
         }
     }
 
-    private Object readXX() {
-        String value = inputView.readXX();
-        return XX.from(value);
+    public String getMenuAndCount() {
+        while (true) {
+            try {
+                return readMenuAndCount();
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception);
+            }
+        }
+    }
+
+    private String readVisitDay() {
+        String value = inputView.readVisitDay();
+        return value;
+    }
+
+    private String readMenuAndCount() {
+        String value = inputView.readMenuAndCount();
+        return value;
     }
 
 }
