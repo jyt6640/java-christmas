@@ -45,9 +45,10 @@ public class ChristmasController {
         printPresentEventBenefits(giftEvent);
 
         int totalBenefitPrice = christmasService.totalSalePrice(salePrice);
-        outputView.printTotalPrice(totalBenefitPrice);
+        outputView.printTotalBenefitPrice(totalBenefitPrice);
 
-
+        int totalSalePrice = totalPrice - totalBenefitPrice;
+        outputView.printTotalSalePrice(totalSalePrice);
 
     }
 

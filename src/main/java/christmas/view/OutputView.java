@@ -66,10 +66,17 @@ public class OutputView {
         }
     }
 
-    public void printTotalPrice(int totalBenefitPrice) {
+    public void printTotalBenefitPrice(int totalBenefitPrice) {
         System.out.println();
         System.out.println("총혜택 금액");
         System.out.printf("-%s원", totalBenefitPrice);
+        System.out.println();
+    }
+
+    public void printTotalSalePrice(int totalSalePrice) {
+        System.out.println();
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.printf("%s원", totalSalePrice);
         System.out.println();
     }
 }
