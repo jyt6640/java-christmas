@@ -10,7 +10,7 @@ public class SaleEvent {
     public SaleEvent(int day) {
         this.isChristmasSale = isChristmasSale(day);
         this.isHolidaySale = isHoliday(day);
-        this.isWeekdaySale = !isHoliday(day);
+        this.isWeekdaySale = isWeekday(day);
         this.isSpecialSale = isSpecialSale(day);
     }
 
@@ -22,6 +22,10 @@ public class SaleEvent {
         return (day - 2) % 7 == 0 || (day - 3) % 7 == 0;
     }
 
+    public boolean isWeekday(int day) {
+        return !((day - 2) % 7 == 0 || (day - 3) % 7 == 0);
+    }
+
     public boolean isSpecialSale(int day) {
         return (day - 3) % 7 == 0;
     }
@@ -30,11 +34,7 @@ public class SaleEvent {
         return 1000 + (100 * day);
     }
 
-    public int daySale(int money) {
-        return money - 2023;
-    }
-
-    public int specialSale(int money) {
-        return money - 1000;
+    public boolean isEventSale() {
+        return isChristmasSale || isWeekdaySale || isHolidaySale || isSpecialSale;
     }
 }

@@ -36,11 +36,7 @@ public class ChristmasController {
         printPresentEvent(giftEvent);
 
         SaleEvent saleEvent = new SaleEvent(visitDay);
-        int christmasSalePrice = christmasService.calculateChristmasSale(saleEvent, visitDay);
-        int holidaySalePrice = christmasService.calculateHolidaySale(menus);
-        int weekdaySalePrice = christmasService.calculateWeekdaySale(menus);
-        int specialSalePrice = christmasService.calculateSpecialSale(saleEvent, visitDay);
-        SalePrice salePrice = new SalePrice(christmasSalePrice, holidaySalePrice, weekdaySalePrice, specialSalePrice);
+        SalePrice salePrice = calculateSalePrice(menus, visitDay, saleEvent);
         printBenefits(saleEvent, visitDay, salePrice);
         printPresentEventBenefits(giftEvent);
 
@@ -49,6 +45,8 @@ public class ChristmasController {
 
         int totalSalePrice = totalPrice - totalBenefitPrice;
         outputView.printTotalSalePrice(totalSalePrice);
+
+        outputView.printBadge(giftEvent.getBadge().getName());
 
     }
 
@@ -69,18 +67,34 @@ public class ChristmasController {
 
     private void printBenefits(SaleEvent saleEvent, int visitDay, SalePrice salePrice) {
         outputView.printBenefits();
-        if (saleEvent.isChristmasSale(visitDay)) {
+        boolean hasBenefit = false;
+        if (saleEvent.isChristmasSale(visitDay) && salePrice.getChristmasSalePrice() > 0) {
             outputView.printChristmasSale(salePrice.getChristmasSalePrice());
+            hasBenefit = true;
         }
-        if (saleEvent.isHoliday(visitDay)) {
+        if (saleEvent.isHoliday(visitDay) && salePrice.getHolidaySalePrice() > 0) {
             outputView.printHolidaySale(salePrice.getHolidaySalePrice());
+            hasBenefit = true;
         }
-        if (!saleEvent.isHoliday(visitDay)) {
+        if (saleEvent.isWeekday(visitDay) && salePrice.getWeekdaySalePrice() > 0) {
             outputView.printWeekdaySale(salePrice.getWeekdaySalePrice());
+            hasBenefit = true;
         }
-        if (saleEvent.isSpecialSale(visitDay)) {
+        if (saleEvent.isSpecialSale(visitDay) && salePrice.getSpecialSalePrice() > 0) {
             outputView.printSpecialSale(salePrice.getSpecialSalePrice());
+            hasBenefit = true;
         }
+        if (!hasBenefit) {
+            outputView.printNothing();
+        }
+    }
+
+    private SalePrice calculateSalePrice(Menus menus, int visitDay, SaleEvent saleEvent) {
+        int christmasSalePrice = christmasService.calculateChristmasSale(saleEvent, visitDay);
+        int holidaySalePrice = christmasService.calculateHolidaySale(menus);
+        int weekdaySalePrice = christmasService.calculateWeekdaySale(menus);
+        int specialSalePrice = christmasService.calculateSpecialSale(saleEvent, visitDay);
+        return new SalePrice(christmasSalePrice, holidaySalePrice, weekdaySalePrice, specialSalePrice);
     }
 
     private void printPresentEventBenefits(GiftEvent giftEvent) {
