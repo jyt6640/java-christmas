@@ -27,4 +27,13 @@ public class Menus {
     public Map<Menu, Integer> getMenuAndCounts() {
         return menuAndCounts;
     }
+
+    public boolean hasOnlyDrink() {
+        for (Menu menu : menuAndCounts.keySet()) {
+            if (menu.getType() != 3) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

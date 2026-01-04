@@ -37,7 +37,15 @@ public class ChristmasController {
 
         SaleEvent saleEvent = new SaleEvent(visitDay);
         SalePrice salePrice = calculateSalePrice(menus, visitDay, saleEvent);
-        printBenefits(saleEvent, visitDay, salePrice);
+
+        outputView.printBenefits();
+        if (isEvent(menus, saleEvent, totalPrice)) {
+            printBenefits(saleEvent, visitDay, salePrice);
+        }
+        if (!isEvent(menus, saleEvent, totalPrice)) {
+            outputView.printNothing();
+        }
+
         printPresentEventBenefits(giftEvent);
 
         int totalBenefitPrice = christmasService.totalSalePrice(salePrice);
@@ -66,7 +74,6 @@ public class ChristmasController {
     }
 
     private void printBenefits(SaleEvent saleEvent, int visitDay, SalePrice salePrice) {
-        outputView.printBenefits();
         boolean hasBenefit = false;
         if (saleEvent.isChristmasSale(visitDay) && salePrice.getChristmasSalePrice() > 0) {
             outputView.printChristmasSale(salePrice.getChristmasSalePrice());
@@ -101,6 +108,16 @@ public class ChristmasController {
         if (giftEvent.isPresentEvent()) {
             outputView.printPresentEventBenefit(giftEvent.isPresentEvent());
         }
+    }
+
+    private boolean isEvent(Menus menus, SaleEvent saleEvent, int totalPrice) {
+        if (totalPrice < 10000) {
+            return false;
+        }
+        if (menus.hasOnlyDrink()) {
+            return false;
+        }
+        return true;
     }
 
 }

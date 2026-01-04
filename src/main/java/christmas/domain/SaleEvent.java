@@ -33,8 +33,4 @@ public class SaleEvent {
     public int christmasSale(int day) {
         return 1000 + (100 * day);
     }
-
-    public boolean isEventSale() {
-        return isChristmasSale || isWeekdaySale || isHolidaySale || isSpecialSale;
-    }
 }
