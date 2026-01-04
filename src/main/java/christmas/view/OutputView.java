@@ -40,25 +40,36 @@ public class OutputView {
         System.out.println("<혜택 내역>");
     }
     
-    public void printChristmasSale() {
-        System.out.println("크리스마스 디 데이 할인: ");
+    public void printChristmasSale(int salePrice) {
+        System.out.println();
+        System.out.printf("크리스마스 디 데이 할인: -%s원", salePrice);
     }
     
-    public void printHolidaySale() {
-        System.out.println("주말 할인: ");
+    public void printHolidaySale(int salePrice) {
+        System.out.println();
+        System.out.printf("주말 할인: -%s원", salePrice);
     }
     
-    public void printWeekdaySale() {
-        System.out.println("평일 할인: ");
+    public void printWeekdaySale(int salePrice) {
+        System.out.println();
+        System.out.printf("평일 할인: -%s원", salePrice);
     }
 
-    public void printSpecialSale() {
-        System.out.println("특별 할인: ");
+    public void printSpecialSale(int salePrice) {
+        System.out.println();
+        System.out.printf("특별 할인: -%s원", salePrice);
     }
     
     public void printPresentEventBenefit(boolean isPresentEvent) {
         if (isPresentEvent) {
             System.out.println("증정 이벤트: -25,000원");
         }
+    }
+
+    public void printTotalPrice(int totalBenefitPrice) {
+        System.out.println();
+        System.out.println("총혜택 금액");
+        System.out.printf("-%s원", totalBenefitPrice);
+        System.out.println();
     }
 }

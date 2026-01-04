@@ -14,20 +14,20 @@ public class SaleEvent {
         this.isSpecialSale = isSpecialSale(day);
     }
 
-    private boolean isChristmasSale(int day) {
+    public boolean isChristmasSale(int day) {
         return day <= 25;
     }
 
-    private boolean isHoliday(int day) {
+    public boolean isHoliday(int day) {
         return (day - 2) % 7 == 0 || (day - 3) % 7 == 0;
     }
 
-    private boolean isSpecialSale(int day) {
+    public boolean isSpecialSale(int day) {
         return (day - 3) % 7 == 0;
     }
 
-    public int christmasSale(int money, int day) {
-        return money - (1000 + (100 * day));
+    public int christmasSale(int day) {
+        return 1000 + (100 * day);
     }
 
     public int daySale(int money) {
@@ -36,21 +36,5 @@ public class SaleEvent {
 
     public int specialSale(int money) {
         return money - 1000;
-    }
-
-    public boolean isChristmasSale() {
-        return isChristmasSale;
-    }
-
-    public boolean isWeekdaySale() {
-        return isWeekdaySale;
-    }
-
-    public boolean isHolidaySale() {
-        return isHolidaySale;
-    }
-
-    public boolean isSpecialSale() {
-        return isSpecialSale;
     }
 }
